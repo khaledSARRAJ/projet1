@@ -30,10 +30,4 @@ public class MotifResiliation implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="MotifResiliation")
 	@JsonIgnore
 	private List<Utilisateur> listeUtilisateur;
-
-	@Override
-	public String toString() {
-		return "MotifResiliation [id=" + id + ", libelleMotift=" + libelleMotift + ", listeUtilisateur="
-				+ listeUtilisateur + "]";
-	}
 }

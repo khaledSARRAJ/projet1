@@ -32,10 +32,4 @@ public class Ville implements Serializable{
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="ville")
 	@JsonIgnore
 	private List<Utilisateur> listeUtilisateur;
-
-	@Override
-	public String toString() {
-		return "Ville [id=" + id + ", codePostale=" + codePostale + ", localite=" + localite + ", pays=" + pays
-				+ ", listeUtilisateur=" + listeUtilisateur + "]";
-	}
 }

@@ -35,9 +35,4 @@ public class Droits implements Serializable {
 		super();
 		this.typeDroit = typeDroit;
 	}
-
-	@Override
-	public String toString() {
-		return "Droits [id=" + id + ", typeDroit=" + typeDroit + ", listeUtilisateur=" + listeUtilisateur + "]";
-	}	
 }

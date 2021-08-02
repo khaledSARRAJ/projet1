@@ -24,7 +24,7 @@ body {
 		<h3>Modifier la publication</h3>
 			<div class="panel-body">
 				<br/>
-				<form th:action="@{/save}" th:object="${productDto}" method="post">
+				<form th:action="@{save}" th:object="${productDto}" method="post">
 			 		<div class="form-group" >
 					<!-- <label class="control-label" >ID :</label>  -->	
 						<input class="form-control" type="hidden" name="id" th:field="*{id}" /> 

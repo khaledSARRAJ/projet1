@@ -152,8 +152,6 @@
 	</dependencyManagement>
 	<build>
 		<finalName>projet1</finalName>
-		<!--deploiement en war-->
-		<!--<finalName>ROOT</finalName>-->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

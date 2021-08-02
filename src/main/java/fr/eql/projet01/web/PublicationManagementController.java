@@ -81,9 +81,8 @@ public class PublicationManagementController {
 			productService.saveOrUpdate(publication);
 			model.addAttribute("message", "Opération réussit");
 			model.addAttribute("success", true);
-		} catch(RuntimeException e) {
-			model.addAttribute("message", "Oups ! un problème est survenu, veuillez rééssayer !");	
-			model.addAttribute("error", true);		}
+		} catch(Exception e) {
+			model.addAttribute("message", "Oups ! un problème est survenu, veuillez rééssayer !");			}
 		return "signalement";
 	}
 
@@ -111,7 +110,6 @@ public class PublicationManagementController {
 		model.addAttribute("user", (Utilisateur) session.getAttribute("utilisateur"));
 		model.addAttribute("publicationsList", publicationsList);
 		for (Publication publication : publicationsList) {
-			System.out.println(publication.getTitre());
 		}
 		model.addAttribute("currentPage", page);
 		model.addAttribute("size", size);
@@ -153,7 +151,6 @@ public class PublicationManagementController {
 		redirectAttributes.addFlashAttribute("message", "Votre publication a bien été supprimée");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-info");
 		return "redirect:/Publications?page=" + page + "&motCle=" + motCle + "&size=" + size;
-
 	}
 
 	@GetMapping(value = "/FormPublication")

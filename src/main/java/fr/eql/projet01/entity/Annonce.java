@@ -59,13 +59,5 @@ public class Annonce implements Serializable{
 		for(Theme t : this.theme) {
 			t.getListAnnonceTheme().remove(this);
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "Annonce [id=" + id + ", titre=" + titre + ", texte=" + texte + ", prix=" + prix + ", dateParution="
-				+ dateParution + ", support=" + support + ", theme=" + theme + ", utilisateur=" + utilisateur + "]";
-	}
-	
-	
+	}	
 }

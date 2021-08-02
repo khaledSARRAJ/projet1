@@ -76,7 +76,7 @@ public class UtilisateurController {
 	public String SauvegardeUti(Model model, @ModelAttribute("utilisateur") Utilisateur uti) {	
 		
 		System.out.println(uti.toString());
-		//model.addAttribute("utilisateur", utilisateurService.save(uti));
+		model.addAttribute("utilisateur", utilisateurService.save(uti));
 		return "profil";
 	}
 
@@ -123,7 +123,6 @@ public class UtilisateurController {
 				utilisateur.setSexe(sexeService.findOne(idsexe));
 				utilisateur.setVille(villeService.findOne(idville));
 				utilisateur.setPasseWord(password);
-				model.addAttribute("Utilisateur", utilisateurService.save(utilisateur));
 				redirect = "home";
 			} catch (Exception e) {
 				model.addAttribute("message", "Oups, quelque chose c'est mal passé ! :-)");

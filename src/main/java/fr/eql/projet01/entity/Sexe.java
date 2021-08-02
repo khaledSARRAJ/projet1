@@ -30,9 +30,4 @@ public class Sexe implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="sexe")
 	@JsonIgnore
 	private List<Utilisateur> listeUtilisateur;
-
-	@Override
-	public String toString() {
-		return "Sexe [id=" + id + ", nonSexe=" + nonSexe + ", listeUtilisateur=" + listeUtilisateur + "]";
-	}
 }

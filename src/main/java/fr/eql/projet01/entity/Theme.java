@@ -58,10 +58,4 @@ public class Theme implements Serializable {
 		}
 		this.listAnnonceTheme.add(a);
 	}
-
-	@Override
-	public String toString() {
-		return "Theme [id=" + id + ", titre=" + titre + ", description=" + description + ", listPublicationTheme="
-				+ listPublicationTheme + ", listAnnonceTheme=" + listAnnonceTheme + "]";
-	}
 }

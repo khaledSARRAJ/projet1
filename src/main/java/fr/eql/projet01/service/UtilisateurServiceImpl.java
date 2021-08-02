@@ -80,18 +80,22 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	@Override
 	public Utilisateur save(Utilisateur utilisateur) throws NotValidObjectException, ResourceNotFoundException {
 		Assert.notNull(utilisateur, "Ne peut pas être null.");
-		if(utilisateur.getId() != null) 
-			//updateUtilisateurDroit(utilisateur);//On extrait le rôle en cas de mise à jour
+		if(utilisateur.getId() != null) {
+			Utilisateur utilisateurFromDB = this.findOne(utilisateur.getId());
+			utilisateur.setDateInscription(utilisateurFromDB.getDateInscription());
+			if(utilisateur.getDroits() == null)
+				utilisateur.setDroits(utilisateurFromDB.getDroits());
 			
-		if(utilisateur.getPasseWord()==null) {
-			utilisateur.setPasseWord(this.findOne(utilisateur.getId()).getPasseWord());//Sinon, on remet le password déjà haché
-		} else if(!bCryptPasswordEncoder.matches(utilisateur.getPasseWord(), this.findOne(utilisateur.getId()).getPasseWord())) {
-			utilisateur.setPasseWord(bCryptPasswordEncoder.encode(utilisateur.getPasseWord()));
+			if(utilisateur.getPasseWord()==null) {
+				utilisateur.setPasseWord(utilisateurFromDB.getPasseWord()); //Sinon, on remet le password déjà haché
+			} else {
+				utilisateur.setPasseWord(bCryptPasswordEncoder.encode(utilisateur.getPasseWord())); //MAJ du mot de passe s'il a été modifié
+			}
 		} else {
-			utilisateur.setPasseWord(bCryptPasswordEncoder.encode(utilisateur.getPasseWord()));//MAJ du mot de passe s'il a été modifié
-		
+			utilisateur.setDroits(droitsRepository.findByTypeDroit("Utilisateur"));
+			utilisateur.setPasseWord(bCryptPasswordEncoder.encode(utilisateur.getPasseWord()));
 		}
-		System.out.println(utilisateur.getPasseWord());
+		
 		Set<ConstraintViolation<Utilisateur>> errors = validator.validate(utilisateur);
 		if(errors.size() > 0) {
 			List<String> l = new ArrayList<String>();
@@ -99,9 +103,6 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 				l.add(cv.getMessage());
 			throw new NotValidObjectException(l);
 		}
-		//addUtilisateurDroit(utilisateur);//Ajout d'un droit par défaut
-		utilisateur.setDroits(droitsRepository.findByTypeDroit("Utilisateur"));
-		utilisateur.setPasseWord(bCryptPasswordEncoder.encode(utilisateur.getPasseWord()));
 		return utilisateurRepository.save(utilisateur);
 	}
 

@@ -43,12 +43,4 @@ public class Support implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idAnnonceSupport")
 	private Annonce annonceSupport;
-
-
-	@Override
-	public String toString() {
-		return "Support [id=" + id + ", typeSupport=" + typeSupport + ", chemin=" + chemin + ", image="
-				+ Arrays.toString(image) + ", publicationSupport=" + publicationSupport + ", annonceSupport="
-				+ annonceSupport + "]";
-	}
 }
