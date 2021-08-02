@@ -32,7 +32,7 @@ import fr.eql.projet01.service.SupportService;
 import fr.eql.projet01.service.UtilisateurService;
 
 @RestController
-@CrossOrigin (origins = { "http://ksarrajadmin.s3-website.us-east-2.amazonaws.com/"}) 
+@CrossOrigin (origins = "http://ksarrajadmin.s3-website.us-east-2.amazonaws.com", maxAge=3600) 
 @RequestMapping(value = "/administrateur", headers = "Accept=application/json")
 public class AdministrateurController {
 
